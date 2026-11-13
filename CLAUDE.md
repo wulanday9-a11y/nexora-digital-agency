@@ -17,7 +17,8 @@ Build and refine a polished, responsive website for a fictional web development 
 - `about.html` — about Nexora Digital
 - `contact.html` — contact details
 - `styles.css` — visual design, layout, responsive behavior
-- `script.js` — mobile navigation and small interactions
+- `script.js` — mobile navigation, page interactions, and EUR/USD chart updates
+- `cloudflare-worker.js` — secure proxy for the Twelve Data EUR/USD quote
 
 ## Design direction
 - Premium, modern digital agency
@@ -35,6 +36,7 @@ Build and refine a polished, responsive website for a fictional web development 
 6. Test navigation, links, and mobile menu after changes.
 7. The email address uses the reserved `.example` domain. Replace it with a real business email before launch.
 8. The brand name is provisional. Check trademark and domain availability before commercial use.
+9. Keep `TWELVE_DATA_API_KEY` in Cloudflare Worker secrets; never add provider credentials to frontend files or GitHub.
 
 ## How to work
 Make one requested change at a time, explain which files changed, and provide clear local testing instructions.
