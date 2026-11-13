@@ -59,22 +59,23 @@ if (financeCard) {
   };
 
   const drawRateHistory = () => {
-    if (rateHistory.length < 2) {
+    if (rateHistory.length === 0) {
       rateLine.setAttribute("d", "");
       ratePoint.classList.remove("visible");
-      updatedDisplay.textContent = "Collecting live points";
       return;
     }
 
     const values = rateHistory.map(({ price }) => price);
     const lowest = Math.min(...values);
     const highest = Math.max(...values);
-    const range = highest - lowest || Math.max(highest * 0.0001, 0.0001);
-    const points = rateHistory.map(({ price }, index) => {
-      const x = (index / (rateHistory.length - 1)) * 320;
-      const y = 70 - ((price - lowest) / range) * 58;
-      return { x, y };
-    });
+    const range = highest - lowest;
+    const points = rateHistory.length === 1
+      ? [{ x: 0, y: 40 }, { x: 320, y: 40 }]
+      : rateHistory.map(({ price }, index) => {
+          const x = (index / (rateHistory.length - 1)) * 320;
+          const y = range === 0 ? 40 : 70 - ((price - lowest) / range) * 58;
+          return { x, y };
+        });
 
     rateLine.setAttribute("d", points.map(({ x, y }, index) => `${index ? "L" : "M"}${x.toFixed(1)} ${y.toFixed(1)}`).join(" "));
     rateLine.removeAttribute("data-drawing");
