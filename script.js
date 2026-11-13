@@ -19,6 +19,13 @@ if (menuToggle && navLinks) {
     });
   });
 
+  const currentPage = window.location.pathname.split("/").pop() || "index.html";
+  navLinks.querySelectorAll("a").forEach((link) => {
+    if (link.getAttribute("href") === currentPage) {
+      link.setAttribute("aria-current", "page");
+    }
+  });
+
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && menuToggle.getAttribute("aria-expanded") === "true") {
       setMenuOpen(false);

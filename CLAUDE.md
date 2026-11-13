@@ -10,7 +10,12 @@ Build and refine a polished, responsive website for a fictional web development 
 - No build step or package installation is required for the starter version.
 
 ## Project files
-- `index.html` — page structure and content
+- `index.html` — home page
+- `services.html` — services
+- `work.html` — concept portfolio
+- `process.html` — project process
+- `about.html` — about Nexora Digital
+- `contact.html` — contact details
 - `styles.css` — visual design, layout, responsive behavior
 - `script.js` — mobile navigation and small interactions
 
