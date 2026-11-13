@@ -64,7 +64,7 @@ export default {
       return corsResponse(cachedResponse, origin);
     }
 
-    const providerUrl = new URL("https://api.twelvedata.com/quote");
+    const providerUrl = new URL("https://api.twelvedata.com/price");
     providerUrl.searchParams.set("symbol", "EUR/USD");
     providerUrl.searchParams.set("apikey", env.TWELVE_DATA_API_KEY);
 
@@ -89,18 +89,13 @@ export default {
       return jsonResponse({ error: "FX provider returned an invalid response." }, 502, origin);
     }
 
-    const price = Number(quote.close);
+    const price = Number(quote.price);
     if (!Number.isFinite(price) || price <= 0) {
-      console.error("Twelve Data response did not contain a valid EUR/USD close.");
-      return jsonResponse({ error: "FX provider returned an invalid EUR/USD quote." }, 502, origin);
+      console.error("Twelve Data response did not contain a valid EUR/USD price.");
+      return jsonResponse({ error: "FX provider returned an invalid EUR/USD price." }, 502, origin);
     }
 
-    const providerTimestamp = quote.datetime
-      ? Date.parse(quote.datetime)
-      : Number(quote.timestamp) * 1000;
-    const timestamp = Number.isFinite(providerTimestamp)
-      ? new Date(providerTimestamp).toISOString()
-      : new Date().toISOString();
+    const timestamp = new Date().toISOString();
     const response = jsonResponse(
       { symbol: "EUR/USD", price, timestamp },
       200,

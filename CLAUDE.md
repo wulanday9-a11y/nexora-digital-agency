@@ -18,7 +18,7 @@ Build and refine a polished, responsive website for a fictional web development 
 - `contact.html` — contact details
 - `styles.css` — visual design, layout, responsive behavior
 - `script.js` — mobile navigation, page interactions, and EUR/USD chart updates
-- `cloudflare-worker.js` — secure proxy for the Twelve Data EUR/USD quote
+- `cloudflare-worker.js` — secure proxy for the Twelve Data EUR/USD latest price
 
 ## Design direction
 - Premium, modern digital agency
